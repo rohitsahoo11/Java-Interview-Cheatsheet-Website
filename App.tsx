@@ -26,7 +26,15 @@ const App: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Calculate header height (16rem = 64px) for offset
+      const headerOffset = 80; 
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       setIsSidebarOpen(false);
     }
   };
@@ -117,7 +125,7 @@ const App: React.FC = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600">
             Java Interview Cheat Sheet
           </h1>
-          <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-400 max-w-3xl mx-auto mb-8 font-medium">
+          <p className="text-xl md:text-2xl text-gray-800 dark:text-gray-500 max-w-3xl mx-auto mb-8 font-medium">
             The ultimate quick revision guide for job seekers and freshers. Master Core Java, JVM, Collections, and Multithreading in minutes.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -127,7 +135,7 @@ const App: React.FC = () => {
             >
               Start Revising
             </button>
-            <button className="bg-white text-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-8 py-3 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition active:scale-95">
+            <button className="bg-white text-gray-800 dark:bg-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 px-8 py-3 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition active:scale-95">
               Download PDF (Beta)
             </button>
           </div>
@@ -159,7 +167,7 @@ const App: React.FC = () => {
                     <ChevronRight size={18} />
                     {item.label}
                   </h3>
-                  <p className="mb-4 leading-relaxed text-gray-900 dark:text-gray-500 font-medium">
+                  <p className="mb-4 leading-relaxed text-slate-800 dark:text-gray-500 font-medium">
                     {item.content}
                   </p>
                   {item.code && (
@@ -182,35 +190,35 @@ const App: React.FC = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Common Mistakes</h3>
               <ul className="space-y-3">
-                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Not knowing internal working of <code>HashMap</code>.</span></li>
-                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Confusing <code>final</code>, <code>finally</code>, and <code>finalize</code>.</span></li>
-                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Explaining JVM memory areas vaguely.</span></li>
-                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Ignoring <code>String Pool</code> and immutability.</span></li>
+                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Not knowing internal working of <code>HashMap</code>.</span></li>
+                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Confusing <code>final</code>, <code>finally</code>, and <code>finalize</code>.</span></li>
+                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Explaining JVM memory areas vaguely.</span></li>
+                <li className="flex gap-2">❌ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Ignoring <code>String Pool</code> and immutability.</span></li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-bold mb-4">What Interviewers Expect</h3>
               <ul className="space-y-3">
-                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Deep understanding of <strong>Java 8+</strong> features.</span></li>
-                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Ability to write code on paper/whiteboard.</span></li>
-                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Clarity on <strong>Memory Management</strong> and GC.</span></li>
-                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-900 dark:text-gray-500">Correct terminology (e.g., "Thread safety").</span></li>
+                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Deep understanding of <strong>Java 8+</strong> features.</span></li>
+                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Ability to write code on paper/whiteboard.</span></li>
+                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Clarity on <strong>Memory Management</strong> and GC.</span></li>
+                <li className="flex gap-2">✅ <span className="text-sm font-bold text-gray-800 dark:text-gray-500">Correct terminology (e.g., "Thread safety").</span></li>
               </ul>
             </div>
           </div>
           <div className="mt-8 p-4 bg-white dark:bg-gray-800 rounded-xl shadow-inner border border-orange-100 dark:border-gray-700">
             <h4 className="font-bold mb-2">5-Minute Revision Strategy:</h4>
-            <p className="text-sm text-gray-900 dark:text-gray-200 italic font-medium">Scan the Collections hierarchy, recite JVM memory areas, and double-check volatile/synchronized definitions just before the call.</p>
+            <p className="text-sm text-gray-800 dark:text-gray-200 italic font-medium">Scan the Collections hierarchy, recite JVM memory areas, and double-check volatile/synchronized definitions just before the call.</p>
           </div>
         </section>
 
         {/* SEO Content Section */}
         <article className="prose dark:prose-invert max-w-none mb-16 p-8 border-t border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold mb-4">Mastering the Java Interview Cheat Sheet</h2>
-          <p className="text-gray-900 dark:text-gray-500 font-medium">
+          <p className="text-gray-800 dark:text-gray-500 font-medium">
             This <strong>Java Interview Cheat Sheet</strong> is designed for developers who need a quick, accurate refresh on <strong>Core Java Cheat Sheet</strong> fundamentals. Whether you are a fresher or a seasoned architect, the complexity of the Java Ecosystem (JVM, Garbage Collection, Multithreading) often requires structured revision.
           </p>
-          <p className="text-gray-900 dark:text-gray-500 font-medium">
+          <p className="text-gray-800 dark:text-gray-500 font-medium">
             Our <strong>Core Java Cheat Sheet</strong> focuses on memory efficiency, design patterns, and standard collection API usage. By studying this <strong>Java Interview Cheat Sheet</strong>, you ensure that you can explain complex topics like G1 Garbage Collection or the internal workings of ConcurrentHashMap with confidence and technical precision.
           </p>
         </article>
@@ -227,7 +235,7 @@ const App: React.FC = () => {
                     <ChevronRight size={20} />
                   </span>
                 </summary>
-                <div className="px-6 pb-6 text-gray-900 dark:text-gray-500 border-t border-gray-100 dark:border-gray-700 pt-4 font-medium leading-relaxed">
+                <div className="px-6 pb-6 text-gray-800 dark:text-gray-500 border-t border-gray-100 dark:border-gray-700 pt-4 font-medium leading-relaxed">
                   {faq.answer}
                 </div>
               </details>
