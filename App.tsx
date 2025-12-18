@@ -127,7 +127,7 @@ const App: React.FC = () => {
             >
               Start Revising
             </button>
-            <button className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-8 py-3 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition active:scale-95">
+            <button className="bg-white text-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-8 py-3 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition active:scale-95">
               Download PDF (Beta)
             </button>
           </div>
